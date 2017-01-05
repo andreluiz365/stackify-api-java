@@ -54,6 +54,11 @@ public class ApiConfiguration {
 	private final EnvironmentDetail envDetail;
 
 	/**
+	 * Allow logging from com.stackify.* 
+	 */
+	private final Boolean allowComDotStackify;
+	
+	/**
 	 * @return the apiUrl
 	 */
 	public String getApiUrl() {
@@ -89,6 +94,13 @@ public class ApiConfiguration {
 	}
 
 	/**
+	 * @return the allowComDotStackify
+	 */
+	public Boolean getAllowComDotStackify() {
+		return allowComDotStackify;
+	}
+
+	/**
 	 * @param builder The Builder object that contains all of the values for initialization
 	 */
 	private ApiConfiguration(final Builder builder) {
@@ -97,6 +109,7 @@ public class ApiConfiguration {
 		this.application = builder.application;
 		this.environment = builder.environment;
 		this.envDetail = builder.envDetail;
+		this.allowComDotStackify = builder.allowComDotStackify;
 	}
 
 	/**
@@ -105,7 +118,6 @@ public class ApiConfiguration {
 	public static Builder newBuilder() {
 	    return new Builder();
 	}
-
 
 	/**
 	 * @return a Builder object based on current instance
@@ -116,7 +128,8 @@ public class ApiConfiguration {
 				.apiKey(apiKey)
 				.application(application)
 				.environment(environment)
-				.envDetail(envDetail);
+				.envDetail(envDetail)
+		        .allowComDotStackify(allowComDotStackify);
 	}
 
 	/**
@@ -148,6 +161,11 @@ public class ApiConfiguration {
 		 * The builder's envDetail
 		 */
 		private EnvironmentDetail envDetail;
+		
+		/**
+		 * The builder's allowComDotStackify
+		 */
+		private Boolean allowComDotStackify;
 
 		/**
 		 * Sets the builder's apiUrl
@@ -198,6 +216,16 @@ public class ApiConfiguration {
 			this.envDetail = envDetail;
 			return this;
 		}
+		
+		/**
+		 * Sets the builder's allowComDotStackify
+		 * @param allowComDotStackify The allowComDotStackify to be set
+		 * @return Reference to the current object
+		 */
+		public Builder allowComDotStackify(final Boolean allowComDotStackify) {
+			this.allowComDotStackify = allowComDotStackify;
+			return this;
+		}
 
 		/**
 		 * @return A new object constructed from this builder
@@ -214,6 +242,7 @@ public class ApiConfiguration {
 	public String toString() {
 		return "ApiConfiguration [apiUrl=" + apiUrl + ", apiKey=" + apiKey
 				+ ", application=" + application + ", environment="
-				+ environment + ", envDetail=" + envDetail + "]";
+				+ environment + ", envDetail=" + envDetail + ", allowComDotStackify=" 
+				+ allowComDotStackify + "]";
 	}
 }
